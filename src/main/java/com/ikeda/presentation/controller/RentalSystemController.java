@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ikeda.LoginService;
+import com.ikeda.data.ItemData;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RentalSystemController {
@@ -15,7 +18,16 @@ public class RentalSystemController {
 	private LoginService loginService;  // インスタンスを注入
 	
 	@GetMapping(value = "/home")
-	public String toHome() {
+	public String toHome(HttpSession session, Model model) {
+		
+		ItemData itemData = (ItemData) session.getAttribute("itemData");
+		
+		if (itemData == null) {
+			itemData = new ItemData();
+			itemData.setItemName("データベースから取得するタイトル名");
+			session.setAttribute("itemData", itemData);
+		}
+		model.addAttribute("itemData", itemData);
 		return "index";
 	}
 	
