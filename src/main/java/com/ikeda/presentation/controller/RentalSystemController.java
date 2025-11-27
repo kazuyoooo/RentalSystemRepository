@@ -1,8 +1,10 @@
 package com.ikeda.presentation.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,21 +51,22 @@ public class RentalSystemController {
 		}
 
 	}
-	@GetMapping("/")
-    public String index(Model model) {
-        List<DvdItem> items = dvdItemRepository.findAll();
-        model.addAttribute("items", items);
-        return "index";   // → templates/index.html を表示
-    }
 	@Autowired
 	private DvdItemRepository dvdItemRepository;
-	
-	@GetMapping("/test2")
-	public String showDvd2(Model model) {
-	    // id=2 をDBから1件取得
-	    DvdItem item = dvdItemRepository.findById(2).orElse(null);
+    @GetMapping("/")
+    public String index(Model model,
+                        @RequestParam(name = "page", defaultValue = "0") int page) {
 
-	    model.addAttribute("item", item);
-	    return "test2";  // templates/test2.html を表示
-	}
+        int pageSize = 9; // 1ページ9件
+
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by("id").ascending());
+        Page<DvdItem> items = dvdItemRepository.findAll(pageable);
+
+        model.addAttribute("items", items);        // 一覧（ページ情報つき）
+        model.addAttribute("currentPage", page);   // 今のページ番号(0始まり)
+
+        return "index"; // 今の index.html を使う
+    }
+	
+
 }
