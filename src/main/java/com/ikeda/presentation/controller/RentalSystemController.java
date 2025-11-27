@@ -1,5 +1,7 @@
 package com.ikeda.presentation.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ikeda.LoginService;
+import com.ikeda.entity.DvdItem;
+import com.ikeda.repository.DvdItemRepository;
 import com.ikeda.data.ItemData;
 
 import jakarta.servlet.http.HttpSession;
@@ -56,5 +60,22 @@ public class RentalSystemController {
 			return "login";
 		}
 
+	}
+	@GetMapping("/")
+    public String index(Model model) {
+        List<DvdItem> items = dvdItemRepository.findAll();
+        model.addAttribute("items", items);
+        return "index";   // → templates/index.html を表示
+    }
+	@Autowired
+	private DvdItemRepository dvdItemRepository;
+	
+	@GetMapping("/test2")
+	public String showDvd2(Model model) {
+	    // id=2 をDBから1件取得
+	    DvdItem item = dvdItemRepository.findById(2).orElse(null);
+
+	    model.addAttribute("item", item);
+	    return "test2";  // templates/test2.html を表示
 	}
 }

@@ -2,19 +2,15 @@ package com.ikeda;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
-import org.springframework.boot.jdbc.autoconfigure.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.boot.jdbc.autoconfigure.JdbcTemplateAutoConfiguration;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(exclude = {
-	    DataSourceAutoConfiguration.class,
-	    DataSourceTransactionManagerAutoConfiguration.class,
-	    JdbcTemplateAutoConfiguration.class
-	})
+@SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.ikeda.repository")
+@EntityScan(basePackages = "com.ikeda.entity")
 public class RentalSystemProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RentalSystemProjectApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(RentalSystemProjectApplication.class, args);
+    }
 }
