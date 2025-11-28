@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS dvd_items (
+  id INT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  image_file_name VARCHAR(255) NOT NULL
+);
