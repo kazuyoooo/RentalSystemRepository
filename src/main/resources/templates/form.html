@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
+  <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,7 +110,7 @@
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <img src="assets/dist/img/icon_white.png" alt="カメラのアイコン" style="width: 25px; margin-right: 5px;">
+          <img src="/img/icon_white.png" alt="カメラのアイコン" style="width: 25px; margin-right: 5px;">
           <strong>Online Rental System</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -128,11 +128,9 @@
       <p class="lead">会員情報を登録します。下記の登録をお願いします。</p>
     </div>
 
-    
-        
-      </div>
       
-        <form  th:action="@{/form}" th:object="${memberForm}" class="needs-validation p-5" novalidate>
+        <form th:action="@{/form}" th:object="${memberForm}" method="post" class="needs-validation p-5" novalidate>
+
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">姓</label>
@@ -154,7 +152,7 @@
               <label for="username" class="form-label">ユーザーネーム</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
-                <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}"required>
+                <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}" required>
               <div class="invalid-feedback">
                   Your username is required.
                 </div>
@@ -201,6 +199,7 @@
                 Credit card number is required
               </div>
             </div>
+            </div>
 
           <hr class="my-4">
 
@@ -215,7 +214,7 @@
     
   </footer>
 </div>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="checkout.js"></script></body>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/checkout.js"></script>
+</body>
 </html>

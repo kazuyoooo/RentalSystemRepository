@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+  <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,7 +109,7 @@
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <img src="assets/dist/img/icon_white.png" alt="カメラのアイコン" style="width: 25px; margin-right: 5px;">
+          <img src="/img/icon_white.png" alt="カメラのアイコン" style="width: 25px; margin-right: 5px;">
           <strong>Online Rental System</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,30 +123,26 @@
   <div class="container-fluid"></div>
 <main class="container">
     <div class="d-flex text-body-secondary pt-3">
-      <img src="../OnlineRental_front/assets/dist/img/カートのアイコン素材.png" alt="ショッピングカート" object-fit: cover; border: none;>
+      <img src="/img/カートのアイコン素材.png" alt="ショッピングカート">
       <p class="pb-3 mb-0 small lh-sm ">
         <strong class="d-block text-gray-dark h1">ショッピングカート</strong> 
       </p>
     </div>
     <small class="d-block text-end mt-5">
     </small>
-  </div>
 
   <div class="my-3 p-3 bg-body rounded shadow-sm">
     <h6 class="border-bottom pb-2 mb-0">以下の物がカートに入っています</h6>
 
     <div th:each="item : ${cartItems}" class="d-flex text-body-secondary pt-3">
 
-        <img th:src="@{${item.imagePath}}" 
-             alt="商品画像"
-             class="flex-shrink-0 me-2 rounded"
-             width="32" height="32">
+        <img th:src="@{/img/{path}(path=${item.imageFileName})}">
 
         <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
             <div class="d-flex justify-content-between">
                 <strong class="text-gray-dark" th:text="${item.name}"></strong>
 
-                <a th:href="@{'/cart/delete/' + ${item.id}}">削除</a>
+                <a th:href="@{/cart/delete/{id}(id=${item.id})}">削除</a>
             </div>
         </div>
 
@@ -161,11 +157,6 @@
     </div>
 </div>
 
-  
-    
-    
-    
-  </div>
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
