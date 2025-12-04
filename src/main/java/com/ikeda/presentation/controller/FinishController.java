@@ -5,13 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.ikeda.LoginService;
 import com.ikeda.presentation.form.MemberForm;
 
 @Controller
 public class FinishController {
 
     @Autowired
-    private MemberService memberService;  // DB 保存用（まだ無ければ後で作る）
+    private LoginService loginService;  // DB 保存用（まだ無ければ後で作る）
 
     // POST /complete → DB登録 → トップページへ
     @PostMapping("/complete")

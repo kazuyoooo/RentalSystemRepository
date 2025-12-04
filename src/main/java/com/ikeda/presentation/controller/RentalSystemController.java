@@ -95,11 +95,6 @@ public class RentalSystemController {
         return "index"; // 今の index.html を使う
     }
     
-    @GetMapping("/cart")
-    public String showCart() {
-        return "cart";  // cart.html を返す
-    }
-    
     @GetMapping("/cartconfirm")
     public String showCartConfirm() {
         // templates/cartconfirm.html を表示

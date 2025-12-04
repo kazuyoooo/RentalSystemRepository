@@ -134,19 +134,20 @@
   <div class="my-3 p-3 bg-body rounded shadow-sm">
     <h6 class="border-bottom pb-2 mb-0">以下の物がカートに入っています</h6>
 
-    <div th:each="item : ${cartItems}" class="d-flex text-body-secondary pt-3">
+    <div th:each="item : ${cart}" class="d-flex text-body-secondary pt-3">
 
-        <img th:src="@{/img/{path}(path=${item.imageFileName})}">
+        <img th:src="@{/img/{file}(file=${item.imageFileName})}" width="120">
 
         <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
             <div class="d-flex justify-content-between">
-                <strong class="text-gray-dark" th:text="${item.name}"></strong>
+                <strong class="text-gray-dark" th:text="${item.title}"></strong>
 
                 <a th:href="@{/cart/delete/{id}(id=${item.id})}">削除</a>
             </div>
         </div>
 
     </div>
+
 
     <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
         <div class="d-flex justify-content-between">
