@@ -1,0 +1,48 @@
+TRUNCATE TABLE dvd_items;
+INSERT INTO dvd_items (id, title, image_file_name) VALUES
+(1, 'NEW_XXえもん', 'batch_new_xx_emon.jpg'),
+(2, 'SAXXTO_DAYS', 'batch_SAXXTO_DAYS.jpg'),
+(3, '劇場版名探偵XXX残像', 'batch_gekijouban_meitantei_xxx_zanzou.jpg'),
+(4, '『怪獣XX号』', 'batch_kaijuu_xx_gou.jpg'),
+(5, 'XX野郎はサンタクロースの夢を見ない', 'batch_xx_yarou_santa_yume_minaai.jpg'),
+(6, 'XX年後…', 'batch_xx_nengo.jpg'),
+(7, '『XX転生II 〜異世界行ったら本気だす〜』Vol.2', 'batch_xx_tensei2_isekai_ittara_honki_dasu_vol2.jpg'),
+(8, 'XXライン', 'batch_xx_line.jpg'),
+(9, 'XXマン', 'batch_XXマン.jpg'),
+(10, 'XXハウス', 'batch_XXハウス.jpg'),
+(11, 'XXXピア', 'batch_XXXピア.jpg'),
+(12, '強くてXXサーガ', 'batch_強くてXXサーガ.jpg'),
+(13, 'XX廻戦XX事変', 'batch_XX廻戦XX事変.jpg'),
+(14, 'XXTシーズンXXヘッド編', 'batch_XXTシーズンXXヘッド編.jpg'),
+(15, 'XXマン完璧超人始祖編', 'batch_XXマン完璧超人始祖編.jpg'),
+(16, 'Dr.XXXXストーン', 'batch_Dr.XXXXストーン.jpg'),
+(17, 'いずれXX錬金術師？', 'batch_いずれXX錬金術師？.jpg'),
+(18, 'ブサメンXXファイター', 'batch_ブサメンXXファイター.jpg'),
+(19, '機動戦士XXの魔女', 'batch_機動戦士XXの魔女.jpg'),
+(20, '魔神創造伝XX', 'batch_魔神創造伝XX.jpg'),
+(21, 'XXXX・ワールドXXXの大地', 'batch_XXXX・ワールドXXXの大地.jpg'),
+(22, 'XXXXアサシン', 'batch_XXXXアサシン.jpg'),
+(23, 'XXXXン消えたXX郷の秘密', 'batch_XXXXン消えたXX郷の秘密.jpg'),
+(24, 'XXXX文明崩壊', 'batch_XXXX文明崩壊.jpg'),
+(25, 'XX・エージェントXXX機密プロトコル', 'batch_XX・エージェントXXX機密プロトコル.jpg'),
+(26, 'サバイバルXXXX領域', 'batch_SAXXバイバルXXXX領域.jpg'),
+(27, 'スターXXXXセクション31', 'batch_スターXXXXセクション31.jpg'),
+(28, 'ハイXXXX', 'batch_ハイXXXX.jpg'),
+(29, 'ベスト・XXXXXレジェンズ', 'batch_ベスト・XXXXXレジェンズ.jpg'),
+(30, 'ミッションXブルXXXX・レコニング', 'batch_ミッションXブルXXXX・レコニング.jpg'),
+(31, 'XXXX・クイーン', 'batch_XXXX・クイーン.jpg'),
+(32, 'XX戦士アマゾXX', 'batch_XX戦士アマゾXX.jpg'),
+(33, 'XXX・デッド', 'batch_XXX・デッド.jpg'),
+(34, 'XXX凶悪XX捜査班', 'batch_XXX凶悪XX捜査班.jpg'),
+(35, 'CHLXXXXグリーンベレー', 'batch_CHLXXXXグリーンベレー.jpg'),
+(36, 'XEXXゼノ', 'batch_XEXXゼノ.jpg'),
+(37, 'ビーXXX', 'batch_ビーXXX.jpg'),
+(38, 'ファイナルXXXXブリッジ', 'batch_ファイナルXXXXブリッジ.jpg'),
+(39, 'ブラックXXX誓いの刻印', 'batch_ブラックXXX誓いの刻印.jpg'),
+(40, '脱XX', 'batch_脱XX.jpg');
+
+TRUNCATE TABLE members;
+INSERT INTO members (firstname, lastname, username, email, address, zip, password)
+VALUES
+('Taro', 'Yamada', 'taro_y', 'taro@example.com', 'Tokyo 1-2-3', '1000001', 'hashed_password_1'),
+('Hanako', 'Suzuki', 'hanako_s', 'hanako@example.com', 'Osaka 4-5-6', '5300001', 'hashed_password_2');

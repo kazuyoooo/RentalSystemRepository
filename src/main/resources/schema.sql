@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS dvd_items (
+  id INT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  image_file_name VARCHAR(255) NOT NULL
+);
+
+DROP TABLE IF EXISTS members;
+CREATE TABLE members (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    address VARCHAR(200),
+    zip VARCHAR(20),
+    password VARCHAR(255) NOT NULL
+);

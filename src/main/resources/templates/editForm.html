@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>会員情報編集</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/checkout.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        user-select: none;
+      }
+    </style>
+</head>
+
+<body class="bg-body-tertiary">
+
+<header data-bs-theme="dark">
+    <div class="collapse text-bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4>About</h4>
+            <p class="text-body-secondary">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <img src="/img/icon_white.png" alt="カメラのアイコン" style="width: 25px; margin-right: 5px;">
+          <strong>Online Rental System</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+</header>
+
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>会員情報 編集</h2>
+      <p class="lead">登録済みの会員情報を編集します。</p>
+    </div>
+
+    <form th:action="@{/member/update}" th:object="${memberForm}" class="needs-validation p-5" method="post" novalidate>
+
+      <!-- 編集に必要なID -->
+      <input type="hidden" th:field="*{id}">
+
+      <div class="row g-3">
+
+        <div class="col-sm-6">
+          <label class="form-label">姓</label>
+          <input type="text" class="form-control" th:field="*{firstName}" required>
+          <div class="invalid-feedback">姓を入力してください。</div>
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label">名</label>
+          <input type="text" class="form-control" th:field="*{lastName}" required>
+          <div class="invalid-feedback">名を入力してください。</div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">ユーザーネーム</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" th:field="*{username}" required>
+            <div class="invalid-feedback">ユーザーネームは必須です。</div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" th:field="*{email}">
+          <div class="invalid-feedback">有効なメールアドレスを入力してください。</div>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">住所</label>
+          <input type="text" class="form-control" th:field="*{address}" required>
+          <div class="invalid-feedback">住所を入力してください。</div>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">郵便番号</label>
+          <input type="text" class="form-control" th:field="*{zip}" required>
+          <div class="invalid-feedback">郵便番号は必須です。</div>
+        </div>
+
+        <label class="form-label">パスワード</label>
+    	<input type="password" class="form-control" th:field="*{password}">
+		<div class="form-text">（変更時のみ）</div>
+
+
+       
+          <label class="form-label">パスワード確認</label>
+          <input type="password" class="form-control" th:field="*{passwordConfirm}">
+     
+
+      	</div>
+
+      <hr class="my-4">
+
+      <button class="w-100 btn btn-primary btn-lg" type="submit">
+        変更を保存
+      </button>
+
+    </form>
+  </main>
+
+  <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+    <p>&copy; 株式会社 Music Life Agency</p>
+  </footer>
+</div>
+
+<!-- JS -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/checkout.js"></script>
+
+</body>
+</html>

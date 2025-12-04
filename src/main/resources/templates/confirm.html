@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.112.5">
+    <title>確認画面 · Bootstrap v5.3</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/checkout.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .confirm-table {
+        background-color: white;
+        border-radius: 8px;
+        padding: 2rem;
+      }
+
+      .confirm-row {
+        padding: 1rem 0;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .confirm-row:last-child {
+        border-bottom: none;
+      }
+
+      .confirm-label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.5rem;
+      }
+
+      .confirm-value {
+        color: #212529;
+        font-size: 1.1rem;
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="checkout.css" rel="stylesheet">
+  </head>
+  <body class="bg-body-tertiary">
+     
+<header data-bs-theme="dark">
+    <div class="collapse text-bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4>About</h4>
+            <p class="text-body-secondary">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <img src="/img/icon_white.png" alt="カメラのアイコン" style="width: 25px; margin-right: 5px;">
+          <strong>Online Rental System</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+</header>
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>会員情報の確認</h2>
+      <p class="lead">以下の内容で登録してよろしいですか?</p>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-12">
+        <div class="confirm-table">
+          
+          <div class="confirm-row">
+            <div class="confirm-label">お名前</div>
+            <div class="confirm-value">
+              <span th:text="${memberForm.firstName}">田中</span>
+              <span th:text="${memberForm.lastName}">太郎</span>
+            </div>
+          </div>
+
+          <div class="confirm-row">
+            <div class="confirm-label">ユーザーネーム</div>
+            <div class="confirm-value">
+              @<span th:text="${memberForm.username}">tanaka_taro</span>
+            </div>
+          </div>
+
+          <div class="confirm-row">
+            <div class="confirm-label">Email</div>
+            <div class="confirm-value" th:text="${memberForm.email}">you@example.com</div>
+          </div>
+
+          <div class="confirm-row">
+            <div class="confirm-label">住所</div>
+            <div class="confirm-value" th:text="${memberForm.address}">福岡県福岡市中央区天神</div>
+          </div>
+
+          <div class="confirm-row">
+            <div class="confirm-label">郵便番号</div>
+            <div class="confirm-value" th:text="${memberForm.zip}">123-4567</div>
+          </div>
+
+          <div class="confirm-row">
+            <div class="confirm-label">パスワード</div>
+            <div class="confirm-value">********</div>
+          </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <form th:action="@{/complete}" th:object="${memberForm}" method="post">
+          <!-- 隠しフィールドで全データを送信 -->
+          <input type="hidden" th:field="*{firstName}">
+          <input type="hidden" th:field="*{lastName}">
+          <input type="hidden" th:field="*{username}">
+          <input type="hidden" th:field="*{email}">
+          <input type="hidden" th:field="*{address}">
+          <input type="hidden" th:field="*{zip}">
+          <input type="hidden" th:field="*{password}">
+          <input type="hidden" th:field="*{passwordConfirm}">
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button class="btn btn-secondary btn-lg" type="button" onclick="history.back()">戻る</button>
+            <button class="btn btn-primary btn-lg" type="submit">登録する</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+    <p class="mb-1">&copy;株式会社 Music Life Agency</p>
+  </footer>
+</div>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/checkout.js"></script>
+</body>
+</html>

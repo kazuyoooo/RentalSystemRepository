@@ -8,5 +8,5 @@ import lombok.Data;
 public class ItemData implements Serializable {
 	
 	private String itemName;
-
+	private String imageFileName;
 }
