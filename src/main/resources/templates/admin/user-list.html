@@ -35,46 +35,11 @@
 				<div class="col-12">
 					<div class="d-flex justify-content-between align-items-center mb-4">
 						<h2 class="fw-light">ユーザー管理</h2>
-						<div>
-							<span class="badge bg-primary fs-6 me-2">総ユーザー数: <span th:text="${totalUsers}">150</span>人</span>
-						</div>
+			
 					</div>
 
 					<!-- 統計情報カード -->
-					<div class="row mb-4">
-						<div class="col-md-3">
-							<div class="card text-center">
-								<div class="card-body">
-									<h5 class="card-title text-muted">アクティブ</h5>
-									<p class="display-6 fw-bold text-success" th:text="${activeUsers}">120</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card text-center">
-								<div class="card-body">
-									<h5 class="card-title text-muted">停止中</h5>
-									<p class="display-6 fw-bold text-danger" th:text="${suspendedUsers}">5</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card text-center">
-								<div class="card-body">
-									<h5 class="card-title text-muted">今月の新規</h5>
-									<p class="display-6 fw-bold text-info" th:text="${newUsersThisMonth}">25</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card text-center">
-								<div class="card-body">
-									<h5 class="card-title text-muted">レンタル中</h5>
-									<p class="display-6 fw-bold text-warning" th:text="${rentingUsers}">45</p>
-								</div>
-							</div>
-						</div>
-					</div>
+
 
 					<!-- 検索フォーム -->
 					<div class="card mb-4">
@@ -84,20 +49,6 @@
 									<div class="col-md-4">
 										<input type="text" class="form-control" name="keyword" 
 											placeholder="ユーザー名・メールアドレスで検索" th:value="${keyword}">
-									</div>
-									<div class="col-md-3">
-										<select class="form-select" name="status">
-											<option value="">すべてのステータス</option>
-											<option value="active" th:selected="${status == 'active'}">アクティブ</option>
-											<option value="suspended" th:selected="${status == 'suspended'}">停止中</option>
-										</select>
-									</div>
-									<div class="col-md-3">
-										<select class="form-select" name="sortBy">
-											<option value="registrationDate" th:selected="${sortBy == 'registrationDate'}">登録日順</option>
-											<option value="lastLogin" th:selected="${sortBy == 'lastLogin'}">最終ログイン順</option>
-											<option value="rentalCount" th:selected="${sortBy == 'rentalCount'}">レンタル回数順</option>
-										</select>
 									</div>
 									<div class="col-md-2">
 										<button type="submit" class="btn btn-secondary w-100">検索</button>
@@ -119,9 +70,6 @@
 											<th>メールアドレス</th>
 											<th>電話番号</th>
 											<th>登録日</th>
-											<th>最終ログイン</th>
-											<th>レンタル回数</th>
-											<th>ステータス</th>
 											<th style="width: 150px;">操作</th>
 										</tr>
 									</thead>
@@ -136,49 +84,32 @@
 											<td th:text="${user.email}">yamada@example.com</td>
 											<td th:text="${user.phone}">090-1234-5678</td>
 											<td th:text="${#temporals.format(user.registrationDate, 'yyyy/MM/dd')}">2024/01/15</td>
-											<td th:text="${user.lastLogin != null} ? ${#temporals.format(user.lastLogin, 'yyyy/MM/dd HH:mm')} : '-'">
-												2024/12/01 10:30
-											</td>
-											<td>
-												<span class="badge bg-info" th:text="${user.rentalCount}">5</span>回
-											</td>
-											<td>
-												<span class="badge" 
-													th:classappend="${user.status == 'active'} ? 'bg-success' : 'bg-danger'"
-													th:text="${user.status == 'active'} ? 'アクティブ' : '停止中'">
-													アクティブ
-												</span>
-											</td>
+
 											<td>
 												<div class="btn-group btn-group-sm" role="group">
-													<button type="button" class="btn btn-outline-primary" 
-														data-bs-toggle="modal" 
-														th:data-bs-target="'#userDetailModal' + ${user.id}"
-														title="詳細">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-															<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-															<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-														</svg>
-													</button>
-													<button type="button" class="btn btn-outline-warning" 
-														th:if="${user.status == 'active'}"
-														th:onclick="'confirmSuspend(\'' + ${user.id} + '\', \'' + ${user.lastName + ' ' + user.firstName} + '\')'"
-														title="アカウント停止">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
-															<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-															<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0z"/>
-														</svg>
-													</button>
-													<button type="button" class="btn btn-outline-success" 
-														th:if="${user.status == 'suspended'}"
-														th:onclick="'confirmActivate(\'' + ${user.id} + '\', \'' + ${user.lastName + ' ' + user.firstName} + '\')'"
-														title="アカウント有効化">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-															<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-															<path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
-														</svg>
-													</button>
-												</div>
+
+    <!-- 編集ボタン -->
+    <a th:href="@{'/admin/user/edit/' + ${user.id}}" 
+       class="btn btn-outline-primary"
+       title="編集">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.193 9.193a.5.5 0 0 1-.168.11l-4 1.5a.5.5 0 0 1-.65-.65l1.5-4a.5.5 0 0 1 .11-.168l9.193-9.193zM11.207 3 13 4.793 14.293 3.5 12.5 1.707 11.207 3z"/>
+        </svg>
+    </a>
+
+    <!-- 削除ボタン -->
+    <a th:href="@{'/admin/user/delete/' + ${user.id}}"
+       class="btn btn-outline-danger"
+       onclick="return confirm('本当に削除しますか？');"
+       title="削除">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+            <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5v-7z"/>
+            <path d="M3.5 3a1 1 0 0 1 1-1h1l.5-.5h4l.5.5h1a1 1 0 0 1 1 1V4h-10V3z"/>
+        </svg>
+    </a>
+
+</div>
+
 											</td>
 										</tr>
 										<!-- ここまでループ終了 -->
@@ -246,24 +177,7 @@
 							<th class="bg-light">住所</th>
 							<td th:text="${user.address}">東京都渋谷区1-2-3</td>
 						</tr>
-						<tr>
-							<th class="bg-light">登録日</th>
-							<td th:text="${#temporals.format(user.registrationDate, 'yyyy年MM月dd日')}">2024年01月15日</td>
-						</tr>
-						<tr>
-							<th class="bg-light">最終ログイン</th>
-							<td th:text="${user.lastLogin != null} ? ${#temporals.format(user.lastLogin, 'yyyy年MM月dd日 HH:mm')} : 'なし'">
-								2024年12月01日 10:30
-							</td>
-						</tr>
-						<tr>
-							<th class="bg-light">レンタル回数</th>
-							<td><span th:text="${user.rentalCount}">5</span> 回</td>
-						</tr>
-						<tr>
-							<th class="bg-light">総利用金額</th>
-							<td th:text="'¥' + ${#numbers.formatInteger(user.totalSpent, 1, 'COMMA')}">¥125,000</td>
-						</tr>
+
 					</table>
 				</div>
 				<div class="modal-footer">

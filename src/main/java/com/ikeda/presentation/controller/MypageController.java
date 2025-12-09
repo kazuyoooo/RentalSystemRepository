@@ -18,7 +18,7 @@ public class MypageController {
         }
 
         // 必要に応じてユーザー情報やレンタル履歴を model にセット
-        model.addAttribute("loginUser", email);
+        model.addAttribute("loginUser", loginUser);
 
         // templates/mypage.html を表示
         return "editForm";

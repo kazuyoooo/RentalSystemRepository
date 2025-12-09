@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ikeda.entity.Member;
 import com.ikeda.presentation.form.LoginForm;
 import com.ikeda.service.LoginService;
 
@@ -25,22 +26,19 @@ public class LoginController {
         return "login"; // templates/login.html
     }
 
-	@PostMapping("/login")
-	public String doLogin(
-			@RequestParam String email,
-			@RequestParam String password,
-			Model model,HttpSession session) {
+    @PostMapping("/login")
+    public String doLogin(@ModelAttribute LoginForm loginForm, Model model, HttpSession session) {
+        Member member = loginService.login(loginForm.getEmail(), loginForm.getPassword());
 
-		boolean result = loginService.loginCheck(email, password);
-
-		
-		if (result) {
-			session.setAttribute("loginUser", member);
-			return "redirect:/index"; // ログイン成功時：トップページに遷移する
-		} else {
-			model.addAttribute("error", "メールアドレスまたはパスワードが違います");
-			return "login";//ログイン失敗時：ログインページに遷移する
-		}
+        if (member != null) {
+            // ログイン成功
+            session.setAttribute("loginUser", member);
+            return "redirect:/index";
+        } else {
+            // ログイン失敗
+            model.addAttribute("error", "メールアドレスまたはパスワードが違います");
+            return "login";
+        }
 		
 
 	}
