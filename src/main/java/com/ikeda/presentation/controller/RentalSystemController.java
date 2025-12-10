@@ -34,7 +34,7 @@ public class RentalSystemController {
 //			session.setAttribute("itemData", itemData);
 //		}
 //		model.addAttribute("itemData", itemData);
-		return "index";
+		return "home";
 	}
 	
 	@GetMapping(value = "/detail")
@@ -93,11 +93,6 @@ public class RentalSystemController {
         model.addAttribute("itemData", itemData);
 
         return "index"; // 今の index.html を使う
-    }
-    
-    @GetMapping("/cart")
-    public String showCart() {
-        return "cart";  // cart.html を返す
     }
     
     @GetMapping("/cartconfirm")

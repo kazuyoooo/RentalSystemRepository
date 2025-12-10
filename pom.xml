@@ -51,20 +51,24 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-             <version>8.3.0</version>
-        </dependency> 
+		 <scope>runtime</scope>
+        </dependency>
+
         
         <!-- PostgreSQL ドライバ -->
 	    <!-- <dependency>
 	        <groupId>org.postgresql</groupId>
 	        <artifactId>postgresql</artifactId>
 	        <scope>runtime</scope>
+
 	    </dependency>-->
 	    <!--  Spring Security を使うため-->
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+	    
 
         <!-- Lombok（あってもなくてもOK） -->
         <dependency>
@@ -82,8 +86,17 @@
     </dependencies>
 
     <build>
+		<!-- index.htmlを探させる -->
+		<resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <includes>
+	                <include>**/*</include>
+	            </includes>
+	        </resource>
+	    </resources>
         <plugins>
-            <!-- Lombok 用（あってもなくてもOK） -->
+            <!-- Lombok 用 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

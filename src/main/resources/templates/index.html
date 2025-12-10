@@ -138,7 +138,7 @@
               <p class="card-text" th:text="${item.title}"></p>
               <div class="d-flex align-items-center justify-content-center">
                 <div class="btn-group d-flex align-items-center">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">カートに入れる</button>
+                  <a th:href="@{/cart/add/{id}(id=${item.id})}" class="btn"><button type="button" class="btn btn-sm btn-outline-secondary">カートに入れる</button></a>
                   <a th:href="@{/detail}"><button type="button" class="btn btn-sm btn-outline-secondary">詳細を見る</button></a>
                 </div>
               </div>
