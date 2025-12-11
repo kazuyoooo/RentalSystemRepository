@@ -34,10 +34,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="/gologin">ログイン</a>
+                <a class="nav-link" href="/login">ログイン</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/gohome">TOP</a>
+                <a class="nav-link" href="/home">TOP</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/mypage">マイページ</a>
@@ -105,6 +105,36 @@
       </div>
     </div>
     <!-- ▲ 商品一覧 -->
+    
+    <!--ページネーション-->
+  <nav aria-label="商品ページ切り替え">
+	  <ul class="pagination justify-content-center">
+	
+	    <!-- 前へ -->
+	    <li class="page-item" th:classappend="${items.first} ? ' disabled'">
+	      <a class="page-link"
+	         th:href="@{/home(page=${items.number - 1})}"
+	         tabindex="-1">前へ</a>
+	    </li>
+	
+	    <!-- ページ番号 -->
+	    <li class="page-item"
+	        th:each="i : ${#numbers.sequence(0, items.totalPages - 1)}"
+	        th:classappend="${i} == ${items.number} ? ' active'">
+	      <a class="page-link"
+	         th:text="${i + 1}"
+	         th:href="@{/home(page=${i})}">1</a>
+	    </li>
+	
+	    <!-- 次へ -->
+	    <li class="page-item" th:classappend="${items.last} ? ' disabled'">
+	      <a class="page-link"
+	         th:href="@{/home(page=${items.number + 1})}">次へ</a>
+	    </li>
+	
+	  </ul>
+	</nav>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">

@@ -15,23 +15,20 @@ import com.ikeda.repository.MemberRepository;
 
 @Configuration
 public class SecurityConfig {
-	@Autowired
+
+    @Autowired
     private MemberRepository memberRepository;
 
-    // ★★★ ここを追加（UserDetailsService を設定）★★★
     @Bean
     public UserDetailsService userDetailsService() {
         return email -> {
             Member member = memberRepository.findByEmail(email);
-
             if (member == null) {
                 throw new UsernameNotFoundException("User not found");
             }
-
-            // ★ role カラムが無いので固定で USER を付与
             return org.springframework.security.core.userdetails.User.builder()
-                    .username(member.getEmail())      // ← ログインID
-                    .password(member.getPassword())    // ← ハッシュ済パスワード
+                    .username(member.getEmail())
+                    .password(member.getPassword())
                     .roles("USER")
                     .build();
         };
@@ -39,16 +36,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/form","/css/**", "/js/**").permitAll()
+                .requestMatchers("/", "/login", "/form","/css/**", "/js/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("email")     // ★ ログインIDに email を使用
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/home", true)
                 .permitAll()
@@ -58,7 +54,6 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login")
                 .permitAll()
             );
-
         return http.build();
     }
 
