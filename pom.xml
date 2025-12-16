@@ -90,6 +90,19 @@
 			<artifactId>spring-security-crypto</artifactId>
 			<version>6.2.0</version>
 		</dependency>
+		<!-- Thymeleaf + Spring Security 連携 -->
+		<dependency>
+    		<groupId>org.thymeleaf.extras</groupId>
+    		<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+
+<!--		H2Database-->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		
     </dependencies>
 

@@ -19,7 +19,7 @@ public class FormController {
     public String showForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
         return "form";
-    }
+    
 
     /*Registercontorollerがこの部分担う
      @PostMapping("/form")
@@ -41,6 +41,8 @@ public class FormController {
         //memberService.saveMember(member);
         // ここで Service を呼んで DB 登録などを行う
         // memberService.register(memberForm);
-        //return "redirect:/complete"; // 登録完了後にトップ画面へ
-		//}
+
+        //return "redirect:/login?registered"; // 登録完了後にlogin画面へ
+    }
+
 }

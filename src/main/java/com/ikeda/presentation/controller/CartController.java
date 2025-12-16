@@ -1,5 +1,8 @@
 package com.ikeda.presentation.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,14 @@ public class CartController {
     @SuppressWarnings("unchecked")
 	@GetMapping("/add/{id}")
     public String addToCart(@PathVariable("id") int id, HttpSession session) {
+
+        List<DvdItem> cart = (List<DvdItem>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new ArrayList<>();
+        }
+        
+        // 重複している商品が追加された場合に、カート追加操作を無効にする処理
+
 
         DvdItem item = itemRepository.findById(id).orElse(null);
 
@@ -62,9 +73,12 @@ public class CartController {
     @GetMapping("/delete/{id}")
     public String itemDeletedCart(@PathVariable("id") int id, HttpSession session, Model model) {
     	List<DvdItem> cart = (List<DvdItem>) session.getAttribute("cart");
+    	
+    	if (cart != null) {
     	cart.removeIf(DvdItem -> DvdItem.getId() == (id));
     	session.setAttribute("cart", cart);
     	model.addAttribute("cart", cart);
+    	}
     	return "cart";
     }
     */
